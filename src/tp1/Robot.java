@@ -54,24 +54,17 @@ public class Robot {
 
     public void dormir() {                
         activo = false;
-        System.out.println("A dormir... \nEstado activo: " + activo+ "\n- - - - - - - - - - - - - -");
+
     }
 
     public void despertar() {
-        if (activo == false) {
-            if (bateria.getCarga() > 0) {
-                activo = true;
-                System.out.println("Despertando... \nEstado activo: " + activo + "\n- - - - - - - - - - - - - -");
-            } else {
-                System.out.println("Recargar bateria!! Carga: " + bateria.getCarga());
-            }
-        }
+      activo = true;
     }
 
     public void recargar() {
-        System.out.println("\n- - - - - - - - - - - - - -\nNo hay suficiente energía...");
+
         bateria.setCarga(1000);
-        System.out.println("Cargando... \nEstado activo: " + activo+ "\n- - - - - - - - - - - - - -");
+
     }
 
     public boolean bateriaLlena() {
