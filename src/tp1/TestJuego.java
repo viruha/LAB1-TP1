@@ -9,7 +9,7 @@ public class TestJuego {
         int opcion = 0;
 
         Robot rob = new Robot();
-        int pasos, aux = 0;
+        int pasos = 0, aux = 0, opcionBat = 0;
         Hombre homb1 = new Hombre("Juan");
         Hombre homb2 = new Hombre("Rosa");
         Hombre jugador = homb1;
@@ -53,19 +53,70 @@ public class TestJuego {
                     }
                     break;
                 case 3:
-                    //
+                    //3 - Retroceder
+                    System.out.println("Ingrese cantidad de pasos a retorceder");
+                    pasos = sc.nextInt();
+                    aux = rob.retroceder(pasos);
+                    if (aux == pasos) {
+                        System.out.println("Retrocedi " + pasos + " pasos indicados.");
+                        System.out.println("Carga de bateria: " + rob.energiaActual());
+                    }
+                    if (pasos != -1) {
+                        System.out.println("Solo pude retroceder: " + pasos + " pasos.");
+                        System.out.println("Carga de bateria: " + rob.energiaActual());
+                    } else {
+                        System.out.println("No hubo movimiento, debe recargar mi bateria! Pasos: " + pasos);
+                        System.out.println("Carga de bateria: " + rob.energiaActual());
+                    }
                     break;
                 case 4:
-                    //
+                    //4 - Dormir
+                    rob.dormir();
+                    System.out.println("El robot se durmio...\nEstado activo: " + rob.isActivo() + "\n- - - - - - - - - - - - - -");
                     break;
                 case 5:
-                    //
+                    //5 - Despertar
+                    if (rob.isActivo()) {
+                        if (rob.energiaActual() > 0) {
+                            rob.despertar();
+                            System.out.println("Despertando... \nEstado activo: " + rob.isActivo() + "\n- - - - - - - - - - - - - -");
+                        } else {
+                            System.out.println("Debe recargar bateria!!");
+                        }
+                    }
+
                     break;
                 case 6:
-                    //
+                    //6 - Recargar
+                    rob.recargar();
+                    System.out.println("Bateria Recargada!!");
                     break;
                 case 7:
-                    //
+                    //7 - Consultar bateria
+                    System.out.println("**** Seleccione una opción ****");
+                    System.out.println("1 - Consultar bateria llena)");
+                    System.out.println("2 - Consultar bateria vacia");
+                    System.out.println("3 - Consultar bateria actual");
+                    opcionBat = sc.nextInt();
+                    switch (opcionBat) {
+                        case 1:
+                            if (rob.bateriaLlena()) {
+                                System.out.println("La bateria esta llena");
+                            } else {
+                                System.out.println("La bateria NO esta llena");
+                            }
+                            break;
+                        case 2:
+                            if (rob.bateriaVacia()) {
+                                System.out.println("La bateria esta Vacia");
+                            } else {
+                                System.out.println("La bateria NO esta Vacia");
+                            }
+                            break;
+                        case 3:
+                            System.out.println("La bateria tiene " + rob.energiaActual() + " de energia");
+                            break;
+                    }
                     break;
                 case 8:
                     //
@@ -78,57 +129,6 @@ public class TestJuego {
             }
         } while (opcion != 10);
 
-        /* System.out.println("Estado de Bateria: " + rob.energiaActual());
-
-        System.out.println("\nHola! " + homb1.getNombreID() + "\nIngrese los pasos a Retroceder:");
-        pasos = sc.nextInt();
-        int pasosVar = rob.retroceder(pasos);
-        if (pasos == pasosVar) {
-            System.out.println("Retrocedi " + pasosVar + " pasos indicados.");
-            System.out.println("Carga de bateria: " + rob.energiaActual());
-        } else {
-            if (pasosVar != 0) {
-                System.out.println("Solo retrocedi: " + pasosVar + " pasos.");
-                System.out.println("Carga de bateria: " + rob.energiaActual());
-            } else {
-                System.out.println("No hubo movimiento, debe recargar mi bateria! Pasos: " + pasosVar);
-                System.out.println("Carga de bateria: " + rob.energiaActual());
-            }
-        }
-        pasos = sc.nextInt();
-        pasosVar = rob.retroceder(pasos);
-        if (pasos == pasosVar) {
-            System.out.println("Retrocedi " + pasosVar + " pasos indicados.");
-            System.out.println("Carga de bateria: " + rob.energiaActual());
-        } else {
-            if (pasosVar != 0) {
-                System.out.println("Solo retrocedi: " + pasosVar + " pasos.");
-                System.out.println("Carga de bateria: " + rob.energiaActual());
-            } else {
-                System.out.println("No hubo movimiento, debe recargar mi bateria! Pasos: " + pasosVar);
-                System.out.println("Carga de bateria: " + rob.energiaActual());
-            }
-        }
-
-        System.out.println("\nHola! " + homb1.getNombreID() + "\n***Vamos a jugar!!***");
-        if (rob.bateriaVacia() || rob.energiaActual() < 52) {
-            rob.recargar();
-            rob.despertar();
-            homb1.jugarConRobot(rob);
-        } else {
-            rob.despertar();
-            homb1.jugarConRobot(rob);
-        }
-        System.out.println("\nHola! " + homb2.getNombreID() + "\n***Vamos a jugar!!***");
-        if (rob.bateriaVacia() || rob.energiaActual() < 52) {
-
-            rob.recargar();
-            rob.despertar();
-            homb1.jugarConRobot(rob);
-        } else {
-            rob.despertar();
-            homb1.jugarConRobot(rob);
-        }
-         */
+        
     }
 }
