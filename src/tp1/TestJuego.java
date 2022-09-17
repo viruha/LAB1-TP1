@@ -41,15 +41,16 @@ public class TestJuego {
                     pasos = sc.nextInt();
                     aux = rob.avanzar(pasos);
                     if (aux == pasos) {
-                        System.out.println("Avance " + pasos + " pasos indicados.");
-                        System.out.println("Carga de bateria: " + rob.energiaActual());
-                    }
-                    if (pasos != -1) {
-                        System.out.println("Solo pude avanzar: " + pasos + " pasos.");
+                        System.out.println("Avance " + aux + " pasos indicados.");
                         System.out.println("Carga de bateria: " + rob.energiaActual());
                     } else {
-                        System.out.println("No hubo movimiento, debe recargar mi bateria! Pasos: " + pasos);
+                    if (aux >= 0) {
+                        System.out.println("Solo pude avanzar: " + aux + " pasos.");
                         System.out.println("Carga de bateria: " + rob.energiaActual());
+                    } else {
+                        System.out.println("No hubo movimiento, debe recargar mi bateria!");
+                        System.out.println("Carga de bateria: " + rob.energiaActual());
+                    }
                     }
                     break;
                 case 3:
@@ -58,15 +59,16 @@ public class TestJuego {
                     pasos = sc.nextInt();
                     aux = rob.retroceder(pasos);
                     if (aux == pasos) {
-                        System.out.println("Retrocedi " + pasos + " pasos indicados.");
-                        System.out.println("Carga de bateria: " + rob.energiaActual());
-                    }
-                    if (pasos != -1) {
-                        System.out.println("Solo pude retroceder: " + pasos + " pasos.");
+                        System.out.println("Retrocedi " + aux + " pasos indicados.");
                         System.out.println("Carga de bateria: " + rob.energiaActual());
                     } else {
-                        System.out.println("No hubo movimiento, debe recargar mi bateria! Pasos: " + pasos);
+                    if (aux >= 0) {
+                        System.out.println("Solo pude retroceder: " + aux + " pasos.");
                         System.out.println("Carga de bateria: " + rob.energiaActual());
+                    } else {
+                        System.out.println("No hubo movimiento, debe recargar mi bateria!");
+                        System.out.println("Carga de bateria: " + rob.energiaActual());
+                    }
                     }
                     break;
                 case 4:
