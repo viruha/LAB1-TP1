@@ -15,6 +15,7 @@ public class TestJuego {
         Hombre jugador = homb1;
 
         //Informar la modalidad de uso en un menu o lista de opciones.
+        System.out.println("Jugando con " + jugador.getNombreID());
         do {
             System.out.println("************ MENU *************");
             System.out.println("**** Seleccione una opción ****");
@@ -26,7 +27,8 @@ public class TestJuego {
             System.out.println("6 - Recargar");
             System.out.println("7 - Consultar bateria"); // elegir entre los tres metodos del robot
             System.out.println("8 - Cambiar jugador"); // elegir entre los tres metodos del robot
-            System.out.println("10 - Salir");
+            System.out.println("10 - Salir \n");
+
             opcion = sc.nextInt();
 
             switch (opcion) {
@@ -40,17 +42,21 @@ public class TestJuego {
                     System.out.println("Ingrese cantidad de pasos a avanzar");
                     pasos = sc.nextInt();
                     aux = rob.avanzar(pasos);
-                    if (aux == pasos) {
-                        System.out.println("Avance " + aux + " pasos indicados.");
-                        System.out.println("Carga de bateria: " + rob.energiaActual());
+                    if (aux != -1) {
+                        if (aux == pasos) {
+                            System.out.println("Avance " + aux + " pasos indicados.");
+                            System.out.println("Carga de bateria: " + rob.energiaActual());
+                        } else {
+                            if (aux >= 0) {
+                                System.out.println("Solo pude avanzar: " + aux + " pasos.");
+                                System.out.println("Carga de bateria: " + rob.energiaActual());
+                            } else {
+                                System.out.println("No hubo movimiento, debe recargar mi bateria!");
+                                System.out.println("Carga de bateria: " + rob.energiaActual());
+                            }
+                        }
                     } else {
-                    if (aux >= 0) {
-                        System.out.println("Solo pude avanzar: " + aux + " pasos.");
-                        System.out.println("Carga de bateria: " + rob.energiaActual());
-                    } else {
-                        System.out.println("No hubo movimiento, debe recargar mi bateria!");
-                        System.out.println("Carga de bateria: " + rob.energiaActual());
-                    }
+                        System.out.println("Primero debe despertar el robot");
                     }
                     break;
                 case 3:
@@ -58,17 +64,21 @@ public class TestJuego {
                     System.out.println("Ingrese cantidad de pasos a retorceder");
                     pasos = sc.nextInt();
                     aux = rob.retroceder(pasos);
-                    if (aux == pasos) {
-                        System.out.println("Retrocedi " + aux + " pasos indicados.");
-                        System.out.println("Carga de bateria: " + rob.energiaActual());
+                    if (aux != -1) {
+                        if (aux == pasos) {
+                            System.out.println("Retrocedi " + aux + " pasos indicados.");
+                            System.out.println("Carga de bateria: " + rob.energiaActual());
+                        } else {
+                            if (aux >= 0) {
+                                System.out.println("Solo pude retroceder: " + aux + " pasos.");
+                                System.out.println("Carga de bateria: " + rob.energiaActual());
+                            } else {
+                                System.out.println("No hubo movimiento, debe recargar mi bateria!");
+                                System.out.println("Carga de bateria: " + rob.energiaActual());
+                            }
+                        }
                     } else {
-                    if (aux >= 0) {
-                        System.out.println("Solo pude retroceder: " + aux + " pasos.");
-                        System.out.println("Carga de bateria: " + rob.energiaActual());
-                    } else {
-                        System.out.println("No hubo movimiento, debe recargar mi bateria!");
-                        System.out.println("Carga de bateria: " + rob.energiaActual());
-                    }
+                        System.out.println("Primero debe despertar el robot");
                     }
                     break;
                 case 4:
@@ -78,7 +88,7 @@ public class TestJuego {
                     break;
                 case 5:
                     //5 - Despertar
-                    if (rob.isActivo()) {
+                    if (rob.isActivo() == false) {
                         if (rob.energiaActual() > 0) {
                             rob.despertar();
                             System.out.println("Despertando... \nEstado activo: " + rob.isActivo() + "\n- - - - - - - - - - - - - -");
@@ -127,10 +137,10 @@ public class TestJuego {
                     } else {
                         jugador = homb1;
                     }
+                    System.out.println("Jugando con " + jugador.getNombreID());
                     break;
             }
         } while (opcion != 10);
 
-        
     }
 }
